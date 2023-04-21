@@ -2,18 +2,47 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 const Footer = () => {
   return (
-    <div className="footer">
+    <footer className="footer">
       <div className="container">
-        <nav className="d-flex justify-content-center align-items-center">
-          <div className="nav nav-pills ">
-            <Link to="/">Home</Link>
-            <Link to="/about">About</Link>
-            <Link to="/products">Products</Link>
-            <Link to="/posts">Posts</Link>
-          </div>
+        <nav className="d-flex justify-content-center">
+          <NavLink
+            to="/"
+            className={(navData) => {
+              return navData.isActive ? "nav-link active" : "nav-link";
+            }}
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to="/about"
+            className={(navData) => {
+              return navData.isActive ? "nav-link active" : "nav-link";
+            }}
+          >
+            About
+          </NavLink>
+          <NavLink
+            to="/products"
+            className={(navData) => {
+              return navData.isActive ? "nav-link active" : "nav-link";
+            }}
+          >
+            Products
+          </NavLink>
+          <NavLink
+            to="/posts"
+            className={(navData) => {
+              return navData.isActive ? "nav-link active" : "nav-link";
+            }}
+          >
+            Posts
+          </NavLink>
         </nav>
+        <div className="copyrights">
+          &copy; 2022 <Link to="/">WebStylePress</Link> - All Rights Reserved.
+        </div>
       </div>
-    </div>
+    </footer>
   );
 };
 
