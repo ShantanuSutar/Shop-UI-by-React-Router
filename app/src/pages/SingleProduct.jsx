@@ -3,6 +3,20 @@ import { Link, useNavigate, useParams, useLocation } from "react-router-dom";
 import PRODUCTS from "../data";
 const SingleProduct = () => {
   const navigate = useNavigate();
+  const { productId } = useParams();
+  const { pathname } = useLocation();
+
+  //get the product
+  const singleProduct = PRODUCTS.find(
+    (product) => product.id === parseInt(productId)
+  );
+  // use == instead of === if useParams fails to get the id
+  // or just check the data and use parseInt(id)
+
+  const { id, name, price, image, details } = singleProduct;
+
+  // console.log("product id", productId);
+  // console.log("product", singleProduct);
 
   return (
     <main>
@@ -10,7 +24,8 @@ const SingleProduct = () => {
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-7">
-              <h1>Title</h1>
+              <h1>{name}</h1>
+              {/* <p>{pathname}</p> */}
             </div>
 
             <div className="col-lg-5">
@@ -23,7 +38,7 @@ const SingleProduct = () => {
                     <Link to="/products">Products</Link>
                   </li>
                   <li className="breadcrumb-item active" aria-current="page">
-                    Page Title
+                    {name}
                   </li>
                 </ol>
               </nav>
@@ -34,11 +49,21 @@ const SingleProduct = () => {
 
       <div className="container content">
         <div className="row">
-          <div className="col-lg-5">image</div>
+          <div className="col-lg-5">
+            <img src={image} className="img-fluid" alt="" />
+          </div>
           <div className="col-lg-7">
-            <h2>name</h2>
-            <p className="price">price</p>
-            <p>details...</p>
+            <h2>{name}</h2>
+            <p className="price">
+              <strong>{price}</strong>
+            </p>
+            <p>
+              {details}
+              {details}
+              {details}
+              {details}
+              {details}
+            </p>
             <br />
             <button
               onClick={() => {
@@ -47,7 +72,8 @@ const SingleProduct = () => {
               className="btn btn-primary btn-sm"
             >
               BACK
-            </button>
+            </button>{" "}
+            &nbsp;
             <button
               onClick={() => {
                 navigate("/products");
@@ -56,6 +82,7 @@ const SingleProduct = () => {
             >
               NAVIGATE TO PRODUCTS
             </button>
+            &nbsp;
             <Link to="/products" className="btn btn-primary btn-sm">
               PRODUCTS
             </Link>
